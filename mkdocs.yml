@@ -1,3 +1,70 @@
-site_name: My Docs
+site_name: ❤️ mkdocs ❤️ 
+site_url: https://tjouve.github.io/onesite/
+site_author: TJO 
+site_description: 
+site_dir: 'public/'
+docs_dir: 'docs'
+
+repo_name: tjouve/onesite
+repo_url:  https://github.com/tjouve/onesite
+
+copyright: Copyright &copy; 2025 TomTalks
+
+site_name: Mon site à moi
 theme:
   name: material
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - content.code.select
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode    
+  features:
+    # Sections opened by default
+    - navigation.indexes
+    - navigation.tabs
+
+plugins:
+  - blog
+  - same-dir
+  - search
+  - timetoread
+  # Make section displayable in nav
+  - section-index
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - md_in_html      
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/tomtalks/ws_grafana
+
+nav:
+  - Home: index.md
+  - Demo: Firstpage.md
+  - Blog: blog/index.md
+      

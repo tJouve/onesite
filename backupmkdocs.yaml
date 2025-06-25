@@ -41,9 +41,6 @@ plugins:
   - timetoread
   # Make section displayable in nav
   - section-index
-  # Move navigation to a dedicated summary file
-  - literate-nav:
-      nav_file: nav.md
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -61,6 +58,13 @@ markdown_extensions:
   - pymdownx.snippets
   - admonition
   - pymdownx.details
+
+nav:
+ - Home: readme.md
+ - Blog: 
+  - blog/index.md
+ 
+
 
 extra:
   social:
