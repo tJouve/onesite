@@ -5,10 +5,6 @@ site_description:
 site_dir: 'public/'
 docs_dir: 'docs'
 
-repo_name: tjouve/onesite
-repo_url:  https://github.com/tjouve/onesite
-
-copyright: Copyright &copy; 2025 TomTalks
 
 site_name: Mon site à moi
 theme:
@@ -65,6 +61,5 @@ extra:
 
 nav:
   - Home: index.md
-  - Demo: Firstpage.md
   - Blog: blog/index.md
       

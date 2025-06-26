@@ -1,100 +1,47 @@
 ---
-date: 2023-09-22
-#authors: [tjouve]
+date: 2025-06-26
 categories:
-  - Build
-  - Performance
-links:
-  - publishing-your-site.md#with-github-actions
-  - creating-your-site.md#building-your-site
+  - Cuisine
 ---
 
-# Using `git sparse-checkout` for faster documentation builds
+# Recette Clafoutis
+Voici une recette traditionnelle de **clafoutis aux cerises**, simple et savoureuse :
 
-__Leveraging `git sparse-checkout` in GitHub Actions enabled us to speed up
-documentation builds in our repository, cutting checkout times from 20 to 30
-seconds to just 2 seconds.__
+---
 
-Developing an efficient approach to build documentation in CI workflows is
-essential, especially when working in large repositories with thousands of
-commits, like ours. Of course, we want to build documentation quickly and
-efficiently, ensuring fast and productive workflows. When using both the
-wonderful [`git-committers`][git-committers] and [`git-revision-date-localized`]
-[git-revision-date-localized] plugins to display [document contributors] and
-[dates] at the bottom of each page, we are required to set `fetch-depth: 0`,
-which resulted in checkout times of 20 to 30 seconds on our repository. By
-leveraging [`git sparse-checkout`][git sparse-checkout] within [GitHub Actions],
-check out time was brought down to 2 seconds.
+### 🍒 **Clafoutis aux cerises** (pour 6 personnes)
 
-  [git sparse-checkout]: https://git-scm.com/docs/git-sparse-checkout
-  [GitHub Actions]: ../../publishing-your-site.md#with-github-actions
-  [git-revision-date-localized]: https://github.com/timvink/mkdocs-git-revision-date-localized-plugin
-  [git-committers]: https://github.com/ojacques/mkdocs-git-committers-plugin-2
-  [document contributors]: ../../setup/adding-a-git-repository.md#document-contributors
-  [dates]: ../../setup/adding-a-git-repository.md#document-dates
+#### **Ingrédients** :
 
-<!-- more -->
+* 500 g de cerises (non dénoyautées pour plus de goût, mais optionnel)
+* 4 œufs
+* 100 g de sucre
+* 1 sachet de sucre vanillé (ou 1 c. à café d’extrait de vanille)
+* 100 g de farine
+* 30 cl de lait
+* 1 pincée de sel
+* 20 g de beurre (pour le moule)
+* (optionnel) un peu de rhum ou kirsch (1 c. à soupe)
 
-## A Primer
+---
 
-[`git sparse-checkout`][git sparse-checkout] allows you to check out only a
-subset of the files in a repository, making it incredibly useful for large
-repositories where a full checkout takes long and includes many files that are
-not relevant when building documentation.
+#### **Préparation** :
 
-## GitHub Actions
+1. **Préchauffer** le four à 180°C (th. 6).
+2. **Beurrer** généreusement un moule (rond ou rectangulaire).
+3. **Disposer les cerises** (lavées, équeutées, avec ou sans noyaux) dans le fond du moule.
+4. Dans un saladier, **battre les œufs** avec le sucre, le sucre vanillé et le sel.
+5. **Ajouter la farine** progressivement tout en mélangeant pour éviter les grumeaux.
+6. **Incorporer le lait** petit à petit, puis éventuellement le rhum/kirsch. Mélanger jusqu’à obtenir une pâte fluide.
+7. **Verser la pâte** sur les cerises.
+8. **Enfourner** pendant environ 40 à 45 minutes, jusqu’à ce que le dessus soit bien doré et que la lame d’un couteau en ressorte propre.
+9. **Laisser tiédir**, puis saupoudrer de sucre glace avant de servir.
 
-To enable [`git sparse-checkout`][git sparse-checkout] within [GitHub Actions]
-and ensure that you are only building the documentation that you need, add the
-following lines to your workflow file:
+---
 
-``` yaml
-- uses: actions/checkout@v4
-  with:
-    fetch-depth: 0
-    sparse-checkout: |
-      docs
-      includes
-```
+### 🍽 Conseils :
 
-[`git sparse-checkout`][git sparse-checkout] always checks out all files
-residing in the repository’s root. This means that regardless of the specified
-paths or directories for sparse checkout, the files located in the root of the
-repository will always be included in the checkout process.
+* Servez tiède ou froid, nature ou avec une boule de glace vanille.
+* Vous pouvez remplacer les cerises par d'autres fruits (abricots, prunes, poires...), mais dans ce cas, on parle de **flan aux fruits**, pas de clafoutis au sens strict !
 
-Thus, you only need to specify the directories that are necessary for building
-documentation. In our case, we only need the `docs` and `includes` folders,
-but if you need additional directories, you can just add them to the end of the
-list. A complete example workflow for [GitHub Actions]:
-
-``` yaml hl_lines="13-18"
-name: documentation
-on:
-  push:
-    branches:
-      - master
-      - main
-permissions:
-  contents: write
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          sparse-checkout: |
-            docs
-            includes
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.x
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
-```
-
-## Conclusion
-
-That's all there is! We're super happy with the results and hope that this will
-help you to speed up your documentation builds in [GitHub Actions] as well. As
-always, feel free to share your thoughts and experiences in the comments below.
+Souhaitez-vous une version sans gluten, sans lactose ou plus légère ?
